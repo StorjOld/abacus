@@ -24,6 +24,12 @@ Two parts, payouts and billing
 + Storage totals from contracts
 + Transfer totals for upload/downloads
 
+#### How do we calculate?
+(manual process)
+  + Calculate per Farmer per Contract
+    + GBh for Storage Contracts by farmer
+    + GBh for Transfer by farmer
+
 ### Billing ( Renter Usage )
 + Storage totals from contracts
 + Transfer totals for upload/downloads
@@ -32,5 +38,30 @@ Two parts, payouts and billing
   + X amount of SJX in account
   + Total number of farmers running
   + Network Karma ( something to track good or bad netizens )
+
+#### How do we calculate?
+(manual process)
+
+### Data format for first step
+  + Storage Usage GBh per time period
+  + Transfer GHh per time period
+
+## Execution Plan Phases
+  1) Create mongodb query to use for now to aggregate billing data
+    + This will work until audits are live as audits clear the download counts that this script will use
+  2) Build basic service to use audits to do billing
+  3) Reassess and build into microservices with queueing to make robust
+
+## Questions
+  + Does the money received from api users go directly to farmers or keep separate
+  + Does the data for download count include date/time?
+    + If not, we need to add that so that we can query for time ranges
+    + We can decode the date/time from the mongo entry
+    + Add completion date/time to download
+  + How do we handle contracts that failed an audit part way through?
+
+## Things we need that don't exist
+  + Download times/speed as reported by the renter (end user) and by the farmer
+  + Transfer date/time for download
 
 ## API Spec
